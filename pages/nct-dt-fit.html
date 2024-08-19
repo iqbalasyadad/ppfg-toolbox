@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../css/nct-dt-fit-style.css" type="text/css">
+        <script src="../scripts/plotly-2.27.0.min.js" charset="utf-8"></script>
+        <title>NCT DT Fitting</title>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="parameters">
+                <form id="nct-dt-parameters-form">
+                    <div class="shptdt-container">
+                        <label for="shptdt-ta"><strong>SHPTF DT</strong></label>
+                        <textarea id="shptdt-ta" name="shptdt-ta" rows="30" cols="30" required></textarea>
+                    </div>
+                    <div class="depthfit-container">
+                        <label for="depthfit-ta"><strong>Depth To Fit</strong></label>
+                        <textarea id="depthfit-ta" name="depthfit-ta" rows="5" cols="30" required></textarea>
+                    </div>
+                    <div class="nct-parameter-ranges-container">
+                        <span><strong>NCT DT Parameter Ranges</strong></span>
+                        <table class="nct-parameter-tb">
+                            <tbody>
+                                <tr>
+                                    <td>DTSH Max</td>
+                                    <td><input name="dtshmax-min-text" id="dtshmax-min-text" type="number" min="0" max="10000"></td>
+                                    <td><input name="dtshmax-max-text" id="dtshmax-max-text" type="number" min="0" max="10000"></td>
+                                </tr>
+                                <tr>
+                                    <td>DTSH Min</td>
+                                    <td><input name="dtshmin-min-text" id="dtshmin-min-text" type="number" min="0" max="10000"></td>
+                                    <td><input name="dtshmin-max-text" id="dtshmin-max-text" type="number" min="0" max="10000"></td>
+                                </tr>
+                                <tr>
+                                    <td>KAM</td>
+                                    <td><input name="kam-min-text" id="kam-min-text" type="number" min="0" max="10000"></td>
+                                    <td><input name="kam-max-text" id="kam-max-text" type="number" min="0" max="10000"></td>
+                                </tr>
+                                <tr>
+                                    <td>Depth Max</td>
+                                    <td><input name="nctdepth-max-text" id="nctdepth-max-text" type="number" min="0" max="10000"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button id="submit-btn" type="submit">Run</button>
+                </form>
+            </div>
+            <div class="plot-container">
+                <div id="plotly-plot"></div>
+            </div>
+            <div class="result-container">
+                <div class="nct-parameter-result">
+                    <label for="nct-result-ta"><strong>NCT DT Parameter Result</strong></label>
+                    <textarea id="nct-result-ta" name="nct-result-ta" rows="10" cols="30"></textarea>
+                </div>
+            </div>
+
+        </div>
+        <script src="../scripts/nct-dt-fit-script.js"></script>
+    </body>
+</html>
