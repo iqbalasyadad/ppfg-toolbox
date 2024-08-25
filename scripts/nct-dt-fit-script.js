@@ -142,8 +142,8 @@ function get_shptdt() {
     var tvdss_list = [];
     const nrow = shptdtf_grid._cellStore.length;
     line_list = shptdtf_grid.getCellRangeData([{x: 0, y:0}, {x: 1, y: nrow-1}]);
-    for (i=0; i<line_list.length; i++) {
-        if (line_list[i][0]!==null && line_list[i][0]!==null) {
+    for (let i=0; i<line_list.length; i++) {
+        if (line_list[i][0]!==null && line_list[i][1]!==null) {
             tvdss_list.push(parseFloat(line_list[i][0]))
             shptdt_list.push(parseFloat(line_list[i][1]))
         } else {

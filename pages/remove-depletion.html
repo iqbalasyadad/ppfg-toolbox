@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../css/remove-depletion.css" type="text/css">
+        <script src="../scripts/datagridxl2.js"></script>
+        <script src="../scripts/plotly-2.27.0.min.js" charset="utf-8"></script>
+        <title>Remove Depletion</title>
+    </head>
+    <body>
+        <div class="data-container">
+            <div class="input-container">
+                <div id="pp-input-grid"></div>
+                <div id="fg-input-grid"></div>
+            </div>
+            
+            <div class="submit-btn-container">
+                <button id="submit-pp-btn" type="submit">>>></button>
+                <button id="submit-fg-btn" type="submit">>>></button>
+            </div>
+
+            <div class="output-container">
+                <div class="output-shale-container">
+                    <div id="pp-shale-output-grid"></div>
+                    <div id="fg-shale-output-grid"></div>
+                </div>
+                <div class="output-sand-container">
+                    <div id="pp-sand-output-grid"></div>
+                    <div id="fg-sand-output-grid"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="plot-container">
+            <div id="plotly-plot"></div>
+        </div>
+
+
+        <script src="../scripts/remove-depletion.js"></script>
+    </body>
+</html>

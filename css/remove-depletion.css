@@ -1,0 +1,81 @@
+body {
+    background-color: black;
+    color: white;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font: 1.2rem "Fira Sans", sans-serif;
+
+}
+.data-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.input-container {
+    padding: 5px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+
+#pp-input-grid {
+    height: 730px;
+    width: 275px;
+}
+#fg-input-grid {
+    height: 730px;
+    width: 275px;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+}
+.output-shale-container {
+    padding: 5px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+.output-sand-container {
+    padding: 5px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+#pp-shale-output-grid {
+    height: 400px;
+    width: 275px;
+}
+#fg-shale-output-grid {
+    height: 400px;
+    width: 275px;
+}
+#pp-sand-output-grid {
+    height: 300px;
+    width: 275px;
+}
+#fg-sand-output-grid {
+    height: 300px;
+    width: 275px;
+}
+.submit-btn-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+#submit-pp-btn {
+    height: 100px;
+}
+#submit-fg-btn {
+    height: 100px;
+}
+
+.plot-container {
+    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
