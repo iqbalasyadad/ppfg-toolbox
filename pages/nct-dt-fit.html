@@ -2,20 +2,22 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="../css/nct-dt-fit-style.css" type="text/css">
+        <script src="https://code.datagridxl.com/datagridxl2.js"></script>
         <script src="../scripts/plotly-2.27.0.min.js" charset="utf-8"></script>
         <title>NCT DT Fitting</title>
     </head>
     <body>
         <div class="main-container">
             <div class="parameters">
-                <form id="nct-dt-parameters-form">
+                <div id="nct-dt-parameters-form">
                     <div class="shptdt-container">
-                        <label for="shptdt-ta"><strong>SHPTF DT</strong></label>
-                        <textarea id="shptdt-ta" name="shptdt-ta" rows="30" cols="30" required></textarea>
+                        <strong>SHPTF DT</strong>
+                        <div id="shptdtf-grid"></div>
                     </div>
                     <div class="depthfit-container">
-                        <label for="depthfit-ta"><strong>Depth To Fit</strong></label>
-                        <textarea id="depthfit-ta" name="depthfit-ta" rows="5" cols="30" required></textarea>
+                        <strong>Depth To Fit</strong>
+                        <!-- <textarea id="depthfit-ta" name="depthfit-ta" rows="5" cols="30" required></textarea> -->
+                        <div id="depthfit-grid"></div>
                     </div>
                     <div class="nct-parameter-ranges-container">
                         <span><strong>NCT DT Parameter Ranges</strong></span>
@@ -45,7 +47,7 @@
                     </div>
 
                     <button id="submit-btn" type="submit">Run</button>
-                </form>
+                </div>
             </div>
             <div class="plot-container">
                 <div id="plotly-plot"></div>

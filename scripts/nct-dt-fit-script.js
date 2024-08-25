@@ -7,6 +7,38 @@ document.getElementById("kam-min-text").value=1500;
 document.getElementById("kam-max-text").value=2000;
 document.getElementById("nctdepth-max-text").value=4000;
 
+
+const shptdtf_grid = new DataGridXL("shptdtf-grid", { 
+    data: DataGridXL.createEmptyData(5, 2),
+    columns: [{title: "DEPTH"}, { title: "SHPTF DT" }],
+    allowDeleteCols: false,
+    allowMoveCols: false,
+    allowMoveRows: false,
+    colHeaderHeight: 20,
+    colHeaderWidth: 100,
+    colHeaderLabelType: "numbers",
+    colHeaderLabelAlign: "center",
+    colAlign: "right",
+    rowHeight: 20,
+    frozenRows: 0
+});
+
+const depthfit_grid = new DataGridXL("depthfit-grid", { 
+    data: DataGridXL.createEmptyData(2, 2),
+    columns: [{title: "DEPTH START"}, { title: "DEPTH END" }],
+    allowDeleteCols: false,
+    allowMoveCols: false,
+    allowMoveRows: false,
+    colHeaderHeight: 20,
+    colHeaderWidth: 100,
+    colHeaderLabelType: "numbers",
+    colHeaderLabelAlign: "center",
+    colAlign: "right",
+    rowHeight: 20,
+    frozenRows: 0
+});
+
+
 // PLOTLY
 var trace1 = {
     name: 'SHPT DT',
@@ -99,34 +131,34 @@ function arange(start, stop, step) {
     return array;
 }
 
-function separate_yx() {
-    var x = [];
-    var y = [];
-    var text_value = document.getElementById("shptdt-ta").value;
-    const lines = text_value.split(/\r?\n/);
-
-    for (i=0;i<lines.length;i++) {
-        var lines_list = lines[i].split(/\s+/);
-        if (lines_list.length===2) {
-            x.push(parseFloat(lines_list[1]))
-            y.push(parseFloat(lines_list[0]))
-        } else { continue;}
+function get_shptdt() {
+    var shptdt_list = [];
+    var tvdss_list = [];
+    const nrow = shptdtf_grid._cellStore.length;
+    line_list = shptdtf_grid.getCellRangeData([{x: 0, y:0}, {x: 1, y: nrow-1}]);
+    for (i=0; i<line_list.length; i++) {
+        if (line_list[i][0]!==null && line_list[i][0]!==null) {
+            tvdss_list.push(parseFloat(line_list[i][0]))
+            shptdt_list.push(parseFloat(line_list[i][1]))
+        } else {
+            continue;
+        }
     }
-    return [y, x];
+    return [tvdss_list, shptdt_list];
 }
 
-function separate_depth_fit_range() {
-    var yys_list = [];
-    var text_value = document.getElementById("depthfit-ta").value;
-    const lines = text_value.split(/\r?\n/);
-
-    for (let i=0;i<lines.length;i++) {
-        var lines_list = lines[i].split(/\s+/);
-        if (lines_list.length===2) {
-            yys_list.push([parseFloat(lines_list[0]), parseFloat(lines_list[1])])
-        } else { continue;}
+function get_depth_fit_range() {
+    var depth_range_list = [];
+    const nrow = depthfit_grid._cellStore.length;
+    line_list = depthfit_grid.getCellRangeData([{x: 0, y:0}, {x: 1, y: nrow-1}]);
+    for (i=0; i<line_list.length; i++) {
+        if (line_list[i][0]!==null && line_list[i][0]!==null) {
+            depth_range_list.push([parseFloat(line_list[i][0]), parseFloat(line_list[i][1])])
+        } else {
+            continue;
+        }
     }
-    return (yys_list);
+    return depth_range_list;
 }
 
 function nct_dt(water_depth, air_gap, dtsh_max, dtsh_min, kam, depth_max, depth_interval) {
@@ -236,8 +268,8 @@ function run() {
     nct_max_depth = kam_ranges_max;
 
     nct_depth_interval = 10;
-    const [shpt_depths, shpt_vals] = separate_yx();
-    depths_fit = separate_depth_fit_range();
+    const [shpt_depths, shpt_vals] = get_shptdt();
+    depths_fit = get_depth_fit_range();
     const [rmse_min, dtsh_max_best, dtsh_min_best, kam_best] = nct_dt_fit(shpt_depths, shpt_vals, depths_fit, dtsh_max_ranges, dtsh_min_ranges, kam_ranges, nct_max_depth, nct_depth_interval);
     nct_best = nct_dt(0, 0, dtsh_max_best, dtsh_min_best, kam_best, nct_max_depth, nct_depth_interval);
 
@@ -248,14 +280,13 @@ function run() {
     
     Plotly.restyle('plotly-plot', update);
     result_nct_param_ta.value = "dtsh max: "+dtsh_max_best+'\n'+"dtsh min: "+dtsh_min_best+'\n'+"kam: "+kam_best+'\n'+"rmse: "+rmse_min.toFixed(2);
-    window.alert("Success")
 }
 
-const form = document.querySelector("#nct-dt-parameters-form");
+const submitButton = document.getElementById("submit-btn");
 const result_nct_param_ta = document.querySelector("#nct-result-ta");
-form.addEventListener("submit", (event) => {
-    document.getElementById("submit-btn").disabled = true;
-    event.preventDefault();
+
+submitButton.onclick = function(){
+    submitButton.disabled = true;
     run();
-    document.getElementById("submit-btn").disabled = false;
-});
+    submitButton.disabled = false;  
+}
