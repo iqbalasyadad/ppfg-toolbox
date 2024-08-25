@@ -205,7 +205,6 @@ function nct_dt_fit(shptf_depths, shptf_vals, depths_fit_ranges, dtsh_max_ranges
                 shptf_used_raw["depths"].push(shptf_depths[j])
                 shptf_used_raw["vals"].push(shptf_vals[j])
             }
-
         }
     }
 
@@ -283,10 +282,11 @@ function run() {
 }
 
 const submitButton = document.getElementById("submit-btn");
+const loadingAnimation = document.getElementById("lds-ring");
 const result_nct_param_ta = document.querySelector("#nct-result-ta");
 
 submitButton.onclick = function(){
     submitButton.disabled = true;
     run();
-    submitButton.disabled = false;  
+    submitButton.disabled = false;
 }
