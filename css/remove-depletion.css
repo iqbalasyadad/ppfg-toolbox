@@ -47,27 +47,17 @@ body {
     height: 400px;
     width: 275px;
 }
-#fg-shale-output-grid {
-    height: 400px;
-    width: 275px;
-}
 #pp-sand-output-grid {
     height: 300px;
     width: 275px;
 }
-#fg-sand-output-grid {
-    height: 300px;
-    width: 275px;
-}
+
 .submit-btn-container {
     display: flex;
     flex-direction: column;
     margin: 5px;
 }
 #submit-pp-btn {
-    height: 100px;
-}
-#submit-fg-btn {
     height: 100px;
 }
 
