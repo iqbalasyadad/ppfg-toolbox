@@ -16,7 +16,9 @@ const pp_input_grid = new DataGridXL("pp-input-grid", {
     colHeaderLabelAlign: "center",
     colAlign: "right",
     rowHeight: 20,
-    frozenRows: 0
+    frozenRows: 0,
+    topBar: false,
+    bottomBar: false
 });
 
 
@@ -38,7 +40,9 @@ const pp_shale_output_grid = new DataGridXL("pp-shale-output-grid", {
     colHeaderLabelAlign: "center",
     colAlign: "right",
     rowHeight: 20,
-    frozenRows: 0
+    frozenRows: 0,
+    topBar: false,
+    bottomBar: false
 });
 
 
@@ -60,7 +64,9 @@ const pp_sand_output_grid = new DataGridXL("pp-sand-output-grid", {
     colHeaderLabelAlign: "center",
     colAlign: "right",
     rowHeight: 20,
-    frozenRows: 0
+    frozenRows: 0,
+    topBar: false,
+    bottomBar: false
 });
 
 
@@ -159,7 +165,6 @@ function get_col_ab(talbleGrid) {
             continue;
         }
     }
-    console.log(col_a, col_b);
     return[col_a, col_b];
 }
 

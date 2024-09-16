@@ -23,7 +23,9 @@ const shptdtf_grid = new DataGridXL("shptdtf-grid", {
     colHeaderLabelAlign: "center",
     colAlign: "right",
     rowHeight: 20,
-    frozenRows: 0
+    frozenRows: 0,
+    topBar: false,
+    bottomBar: false
 });
 
 const depthfit_grid = new DataGridXL("depthfit-grid", { 
@@ -41,7 +43,9 @@ const depthfit_grid = new DataGridXL("depthfit-grid", {
     colHeaderLabelAlign: "center",
     colAlign: "right",
     rowHeight: 20,
-    frozenRows: 0
+    frozenRows: 0,
+    topBar: false,
+    bottomBar: false
 });
 
 
@@ -137,20 +141,21 @@ function arange(start, stop, step) {
     return array;
 }
 
-function get_shptdt() {
-    var shptdt_list = [];
-    var tvdss_list = [];
-    const nrow = shptdtf_grid._cellStore.length;
-    line_list = shptdtf_grid.getCellRangeData([{x: 0, y:0}, {x: 1, y: nrow-1}]);
-    for (let i=0; i<line_list.length; i++) {
-        if (line_list[i][0]!==null && line_list[i][1]!==null) {
-            tvdss_list.push(parseFloat(line_list[i][0]))
-            shptdt_list.push(parseFloat(line_list[i][1]))
+function get_shptdt(talbleGrid) {
+    const allData = talbleGrid.getData(); // Get all data
+    const nrow = allData.length;
+
+    var col_a = [];
+    var col_b = [];
+    for (let i=0; i<nrow; i++) {
+        if (allData[i][0] !== null && allData[i][1] !== null) {
+            col_a.push(parseFloat(allData[i][0]));
+            col_b.push(parseFloat(allData[i][1]));
         } else {
             continue;
         }
     }
-    return [tvdss_list, shptdt_list];
+    return[col_a, col_b];
 }
 
 function get_depth_fit_range() {
@@ -273,7 +278,7 @@ function run() {
     nct_max_depth = kam_ranges_max;
 
     nct_depth_interval = 10;
-    const [shpt_depths, shpt_vals] = get_shptdt();
+    const [shpt_depths, shpt_vals] = get_shptdt(shptdtf_grid);
     depths_fit = get_depth_fit_range();
     const [rmse_min, dtsh_max_best, dtsh_min_best, kam_best] = nct_dt_fit(shpt_depths, shpt_vals, depths_fit, dtsh_max_ranges, dtsh_min_ranges, kam_ranges, nct_max_depth, nct_depth_interval);
     nct_best = nct_dt(0, 0, dtsh_max_best, dtsh_min_best, kam_best, nct_max_depth, nct_depth_interval);
