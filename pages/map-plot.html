@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../css/map-plot.css" type="text/css">
+        <script src="../scripts/datagridxl2.js"></script>
+        <script src="../scripts/plotly-2.27.0.min.js" charset="utf-8"></script>
+        <title>Plot Map</title>
+    </head>
+    <body>
+        <div class="data-container">
+            <div class="input-container">
+
+                <div id="marker-container">
+                    <h6 class="marker-title-margin">Surrounding Well</h6>
+                    <div id="surrounding-marker-input-grid"></div>
+                </div>
+
+                <div id="marker-container">
+                    <h6 class="marker-title-margin">Proposed Well</h6>
+                    <div id="proposed-marker-input-grid"></div>
+                </div>
+
+                <div id="marker-container">
+                    <h6 class="marker-title-margin">Parameter</h6>
+
+                    <table class="map-plot-parameter">
+                        <tbody>
+                            <tr>
+                                <td>Proposed Name</td>
+                                <td><input name="proposed-wellname-text" id="proposed-wellname-text" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Marker</td>
+                                <td><input name="plot-marker-text" id="plot-marker-text" type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="submit-btn-container">
+                        <button id="submit-btn" type="submit">OK</button>
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+        </div>
+
+        <div class="plot-container">
+            <div id="plotly-plot"></div>
+        </div>
+
+        <script src="../scripts/map-plot.js"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+body {
+    background-color: black;
+    color: white;
+    font: 1.2rem "Fira Sans", sans-serif;
+}
+.data-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.input-container {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+.marker-title-margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#marker-container {
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+#surrounding-marker-input-grid {
+    height: 500px;
+    width: 600px;
+}
+#proposed-marker-input-grid {
+    height: 500px;
+    width: 500px;
+}
+
+.map-plot-parameter td {
+font-size: 10pt;
+}
+.plot-container {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
